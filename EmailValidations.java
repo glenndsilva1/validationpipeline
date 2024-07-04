@@ -1,20 +1,22 @@
 package com.servlet.cor.atm.validation;
 
 public class EmailValidations {
-	protected static Validations emailvalidchain = new EmailAtSign();
+	protected static Validations emailatsign = new EmailAtSign();
 	protected static Validations emaildotsign = new EmailDotSign();
+	protected static Validations chain;
 	
 	static {
-		emailvalidchain.setNextDispender(emaildotsign);
+		emailatsign.setNextDispender(emaildotsign);
+		chain = emailatsign;
 	}
 	
     public static void validate(String str){
         if(str != null){
-            emailvalidchain.apply(str);
+            chain.apply(str);
         }
     }
     
-    public static void main(String args[]) {
-    	validate("glenn@gmailcom");
+    public static void main(String args[]){
+    	validate("glenngmailcom");
     }
 }
